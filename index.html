@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A live weather dashboard showing current conditions and a five-day forecast for any city.">
+    <meta name="theme-color" content="#12233d">
+    <title>Atmos | Live weather dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="dashboard">
+      <header class="topbar">
+        <a class="brand" href="index.html" aria-label="Atmos weather dashboard home">
+          <span class="brand-mark" aria-hidden="true">◒</span>
+          <span>atmos</span>
+        </a>
+        <p class="topbar-note">Weather, clearly.</p>
+      </header>
+
+      <section class="search-section" aria-labelledby="page-title">
+        <div class="intro">
+          <p class="eyebrow">Live conditions</p>
+          <h1 id="page-title">How's the weather<br><em>where you are?</em></h1>
+        </div>
+        <form class="search-form" id="search-form">
+          <label class="visually-hidden" for="city-input">Search for a city</label>
+          <input id="city-input" name="city" type="search" placeholder="Search a city..." autocomplete="address-level2" required>
+          <button type="submit"><span aria-hidden="true">⌕</span> Search</button>
+        </form>
+        <p class="form-hint">Try a city name like London, Tokyo, or New York.</p>
+      </section>
+
+      <div class="status-region" id="status-region" role="status" aria-live="polite"></div>
+      <section class="weather-content" id="weather-content" aria-live="polite" hidden>
+        <article class="current-weather">
+          <div class="location-heading">
+            <div>
+              <p class="eyebrow">Current weather</p>
+              <h2 id="location-name">London</h2>
+              <p class="location-region" id="location-region"></p>
+            </div>
+            <p class="current-date" id="current-date"></p>
+          </div>
+          <div class="current-main">
+            <div class="weather-symbol" id="current-symbol" aria-hidden="true">☀</div>
+            <div class="temperature"><span id="current-temperature">--</span><sup>°C</sup></div>
+            <div class="condition">
+              <strong id="current-condition">Clear sky</strong>
+              <span>Feels like <span id="feels-like">--</span>°C</span>
+            </div>
+          </div>
+          <div class="metric-grid">
+            <div class="metric"><span class="metric-icon" aria-hidden="true">💧</span><span class="metric-label">Humidity</span><strong><span id="humidity">--</span>%</strong></div>
+            <div class="metric"><span class="metric-icon" aria-hidden="true">↝</span><span class="metric-label">Wind speed</span><strong><span id="wind-speed">--</span> km/h</strong></div>
+            <div class="metric"><span class="metric-icon" aria-hidden="true">◉</span><span class="metric-label">Wind direction</span><strong id="wind-direction">--</strong></div>
+          </div>
+        </article>
+
+        <section class="forecast-section" aria-labelledby="forecast-title">
+          <div class="section-heading"><p class="eyebrow">The week ahead</p><h2 id="forecast-title">Five-day forecast</h2></div>
+          <div class="forecast-grid" id="forecast-grid"></div>
+        </section>
+      </section>
+      <section class="error-state" id="error-state" role="alert" hidden>
+        <span aria-hidden="true">!</span>
+        <h2>We couldn't find that place.</h2>
+        <p id="error-message">Check the spelling and try searching again.</p>
+      </section>
+      <footer class="dashboard-footer"><p>Data provided by <a href="https://open-meteo.com/" rel="noopener noreferrer">Open-Meteo</a>.</p><p id="updated-time"></p></footer>
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>
